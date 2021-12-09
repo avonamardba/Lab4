@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class TestMessage {
     private String testName;
-    private String result;
+    private String actualResult;
     private String expectedResult;
     private Object[] params;
     private TestPackage parentPackage;
@@ -17,6 +17,34 @@ public class TestMessage {
         this.testName = testName;
         this.expectedResult = expectedResult;
         this.params = params;
+    }
+
+    public void setActualResult(String actualResult) {
+        this.actualResult = actualResult;
+    }
+
+    public void setParentPackage(TestPackage parentPackage) {
+        this.parentPackage = parentPackage;
+    }
+
+    public String getTestName() {
+        return this.testName;
+    }
+
+    public String getActualResult() {
+        return this.actualResult;
+    }
+
+    public String getExpectedResult() {
+        return this.expectedResult;
+    }
+
+    public Object[] getParams() {
+        return this.params;
+    }
+
+    public TestPackage getParentPackage() {
+        return this.parentPackage;
     }
 
 }
