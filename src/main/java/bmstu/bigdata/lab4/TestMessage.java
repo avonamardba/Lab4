@@ -11,6 +11,12 @@ public class TestMessage {
     private TestPackage parentPackage;
 
     @JsonCreator
-    public TestMessage(@JsonProperty("testName") String)
+    public TestMessage(@JsonProperty("testName") String testName,
+                       @JsonProperty("expectedResult") String expectedResult,
+                       @JsonProperty("params") Object[] params) {
+        this.testName = testName;
+        this.expectedResult = expectedResult;
+        this.params = params;
+    }
 
 }
