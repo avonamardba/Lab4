@@ -3,13 +3,12 @@ package bmstu.bigdata.lab4;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class TestPackage {
-    private String packageId;
-    private String functionName;
-    private String jsScript;
-    private ArrayList<TestMessage> tests;
+    private final String packageId;
+    private final String functionName;
+    private final String jsScript;
+    private final ArrayList<TestMessage> tests;
 
     public TestPackage(@JsonProperty("packageId") String packageId,
                        @JsonProperty("functionName") String functionName,
@@ -21,6 +20,19 @@ public class TestPackage {
         this.tests = tests;
     }
 
-    
+    public String getPackageId() {
+        return this.packageId;
+    }
 
+    public String getFunctionName() {
+        return this.functionName;
+    }
+
+    public String getJsScript() {
+        return this.jsScript;
+    }
+
+    public ArrayList<TestMessage> getTests() {
+        return this.tests;
+    }
 }

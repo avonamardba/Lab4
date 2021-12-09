@@ -3,6 +3,11 @@ package bmstu.bigdata.lab4;
 import akka.actor.AbstractActor;
 import akka.actor.ActorRef;
 
+import javax.script.Invocable;
+import javax.script.ScriptEngine;
+import javax.script.ScriptEngineManager;
+import javax.script.ScriptException;
+
 public class TestActor extends AbstractActor {
     private final ActorRef storageActor;
 
@@ -10,7 +15,25 @@ public class TestActor extends AbstractActor {
         this.storageActor = storageActor;
     }
 
-//    private executeTest(T)
+    private String executeTest(TestMessage testMessage) {
+        ScriptEngine engine = new
+                ScriptEngineManager().getEngineByName("nashorn");
+        try {
+            engine.eval(testMessage.getParentPackage().getJsScript());
+        } catch (ScriptException e) {
+            e.printStackTrace();
+        }
+        Invocable invocable = (Invocable) engine;
+        try {
+            return invocable.invokeFunction(testMessage.getParentPackage().getFunctionName(),
+                    testMessage.getParams()).toString();
+        } catch (ScriptException e) {
+            e.printStackTrace();
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
+        }
+    }
+
     @Override
     public Receive createReceive() {
         return null;
