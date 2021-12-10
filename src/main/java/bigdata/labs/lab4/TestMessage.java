@@ -1,13 +1,13 @@
-package bmstu.bigdata.lab4;
+package bigdata.labs.lab4;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class TestMessage {
-    private String testName;
+    private final String testName;
     private String actualResult;
-    private String expectedResult;
-    private Object[] params;
+    private final String expectedResult;
+    private final Object[] params;
     private TestPackage parentPackage;
 
     @JsonCreator

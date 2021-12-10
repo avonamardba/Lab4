@@ -1,4 +1,4 @@
-package bmstu.bigdata.lab4;
+package bigdata.labs.lab4;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 

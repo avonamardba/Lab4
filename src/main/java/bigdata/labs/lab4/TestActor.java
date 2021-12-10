@@ -1,4 +1,4 @@
-package bmstu.bigdata.lab4;
+package bigdata.labs.lab4;
 
 import akka.actor.AbstractActor;
 import akka.actor.ActorRef;
@@ -27,11 +27,10 @@ public class TestActor extends AbstractActor {
         try {
             return invocable.invokeFunction(testMessage.getParentPackage().getFunctionName(),
                     testMessage.getParams()).toString();
-        } catch (ScriptException e) {
-            e.printStackTrace();
-        } catch (NoSuchMethodException e) {
+        } catch (ScriptException | NoSuchMethodException e) {
             e.printStackTrace();
         }
+        return "";
     }
 
     @Override
