@@ -1,2 +1,5 @@
-package bigdata.labs.lab4;public class App {
+package bigdata.labs.lab4;
+
+public class App {
+    
 }
