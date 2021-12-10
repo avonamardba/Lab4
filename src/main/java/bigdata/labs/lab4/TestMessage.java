@@ -8,7 +8,7 @@ public class TestMessage {
     private String actualResult;
     private final String expectedResult;
     private final Object[] params;
-    private TestPackage parentPackage;
+    private TestPackage Parent;
 
     @JsonCreator
     public TestMessage(@JsonProperty("testName") String testName,
@@ -23,8 +23,8 @@ public class TestMessage {
         this.actualResult = actualResult;
     }
 
-    public void setParentPackage(TestPackage parentPackage) {
-        this.parentPackage = parentPackage;
+    public void setParent(TestPackage parent) {
+        this.Parent = parent;
     }
 
     public String getTestName() {
@@ -43,8 +43,8 @@ public class TestMessage {
         return this.params;
     }
 
-    public TestPackage getParentPackage() {
-        return this.parentPackage;
+    public TestPackage getParent() {
+        return this.Parent;
     }
 
 }
