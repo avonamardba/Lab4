@@ -11,7 +11,7 @@ public class StorageActor extends AbstractActor {
     private final HashMap<String, ArrayList<TestMessage>> storage = new HashMap<>();
 
     private ArrayList<TestMessage> getTests(String packageId) {
-        ArrayList<>
+        ArrayList<TestResult> tes
     }
 
     private void putTest(TestMessage testMessage) {

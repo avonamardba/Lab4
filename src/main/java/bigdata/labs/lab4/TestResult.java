@@ -4,9 +4,9 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class TestResult {
-    private String actualResult;
-    private String expectedResult;
-    private Boolean success;
+    private final String actualResult;
+    private final String expectedResult;
+    private final Boolean success;
 
     @JsonCreator
     public TestResult(@JsonProperty("expectedResult") String expectedResult,
