@@ -24,6 +24,8 @@ import static akka.http.javadsl.server.PathMatchers.segment;
 public class App extends AllDirectives {
     private static final int TIMEOUT = 3000;
     private static final String HOSTNAME = "localhost";
+    private static final int PORT = 3000;
+
 
     private final ActorRef routerActor;
 
@@ -60,6 +62,6 @@ public class App extends AllDirectives {
         App instance = new App(routerActor);
 
         Flow<HttpRequest, HttpResponse, NotUsed> routeFlow = instance.createRoute().flow(system, materializer);
-        CompletionStage<ServerBinding> binding = http.bindAndHandle(routeFlow, ConnectHttp.toHost());
+        CompletionStage<ServerBinding> binding = http.bindAndHandle(routeFlow, ConnectHttp.toHost(HOSTNAME, PORT));
     }
 }
