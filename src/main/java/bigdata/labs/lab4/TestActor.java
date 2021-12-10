@@ -35,6 +35,6 @@ public class TestActor extends AbstractActor {
 
     @Override
     public Receive createReceive() {
-        return ;
+        return RecieveBuilder.create();
     }
 }
