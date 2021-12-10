@@ -16,7 +16,7 @@ public class StorageActor extends AbstractActor {
         } else throw new Exception("No such package");
     }
 
-    private 
+    private RequestAnswer 
 
     private void putTest(TestMessage testMessage) {
         String packageId = testMessage.getParent().getPackageId();
