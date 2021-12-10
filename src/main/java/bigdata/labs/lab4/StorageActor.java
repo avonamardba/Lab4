@@ -10,9 +10,13 @@ import java.util.Map;
 public class StorageActor extends AbstractActor {
     private final HashMap<String, ArrayList<TestMessage>> storage = new HashMap<>();
 
-    private ArrayList<TestMessage> getTests(String packageId) {
-        ArrayList<TestResult> tes
+    private ArrayList<TestMessage> getTests(String packageId) throws Exception {
+        if (this.storage.containsKey(packageId)) {
+            return this.storage.get(packageId);
+        } else throw new Exception("No such package");
     }
+
+    private 
 
     private void putTest(TestMessage testMessage) {
         String packageId = testMessage.getParent().getPackageId();
