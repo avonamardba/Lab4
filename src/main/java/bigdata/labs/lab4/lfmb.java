@@ -1,2 +1,4 @@
-package bigdata.labs.lab4;public class lfmb {
+package bigdata.labs.lab4;
+
+public class lfmb {
 }
