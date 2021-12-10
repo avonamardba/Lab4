@@ -10,6 +10,10 @@ import java.util.Map;
 public class StorageActor extends AbstractActor {
     private final HashMap<String, ArrayList<TestMessage>> storage = new HashMap<>();
 
+    private ArrayList<TestMessage> getTests(String packageId) {
+        ArrayList<>
+    }
+
     private void putTest(TestMessage testMessage) {
         String packageId = testMessage.getParent().getPackageId();
         if (this.storage.containsKey(packageId)) {
