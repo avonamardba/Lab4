@@ -16,7 +16,20 @@ public class StorageActor extends AbstractActor {
         } else throw new Exception("No such package");
     }
 
-    private RequestAnswer 
+    private RequestAnswer makeResults(String packageId) throws Exception {
+        ArrayList<TestResult> answers = new ArrayList<>();
+        if (this.storage.containsKey(packageId)) {
+            for (TestMessage testMessage : this.getTests(packageId)) {
+                String expectedResult = testMessage.getExpectedResult();
+                String actualResult = testMessage.getActualResult();
+                TestResult testResult = new TestResult(expectedResult,
+                        actualResult,
+                        actualResult.equals(expectedResult));
+                answers.add(testResult);
+            }
+            
+        }
+    }
 
     private void putTest(TestMessage testMessage) {
         String packageId = testMessage.getParent().getPackageId();
