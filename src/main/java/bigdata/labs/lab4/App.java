@@ -58,17 +58,18 @@ public class App extends AllDirectives {
         ActorSystem system = ActorSystem.create(ACTOR_SYSTEM_NAME);
         ActorRef routerActor = system.actorOf(Props.create(RouterActor.class, system), "routerActor");
 
-        Http http = Http.get(system);
-        ActorMaterializer materializer = ActorMaterializer.create(system);
+        final Http http = Http.get(system);
+        final ActorMaterializer materializer = ActorMaterializer.create(system);
 
         App instance = new App(routerActor);
 
-        Flow<HttpRequest, HttpResponse, NotUsed> routeFlow = instance.createRoute().flow(system, materializer);
-        CompletionStage<ServerBinding> binding = http.bindAndHandle(routeFlow,
+        final Flow<HttpRequest, HttpResponse, NotUsed> routeFlow = instance.createRoute().flow(system, materializer);
+        final CompletionStage<ServerBinding> binding = http.bindAndHandle(
+                routeFlow,
                 ConnectHttp.toHost(HOSTNAME, PORT),
                 materializer);
 
-        String startMessage = String.format("Server start at http://%s:%d/\\", HOSTNAME, PORT);
+        String startMessage = String.format("Server started at http://%s:%d/\\", HOSTNAME, PORT);
         System.out.println(startMessage);
         binding.thenCompose(ServerBinding::unbind)
                 .thenAccept(unbound -> system.terminate());
