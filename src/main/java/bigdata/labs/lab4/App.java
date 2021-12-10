@@ -62,6 +62,10 @@ public class App extends AllDirectives {
         App instance = new App(routerActor);
 
         Flow<HttpRequest, HttpResponse, NotUsed> routeFlow = instance.createRoute().flow(system, materializer);
-        CompletionStage<ServerBinding> binding = http.bindAndHandle(routeFlow, ConnectHttp.toHost(HOSTNAME, PORT));
+        CompletionStage<ServerBinding> binding = http.bindAndHandle(routeFlow,
+                ConnectHttp.toHost(HOSTNAME, PORT),
+                materializer);
+
+        String statrMessage = String.format("Server start at ")
     }
 }
