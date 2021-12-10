@@ -24,7 +24,7 @@ import static akka.http.javadsl.server.PathMatchers.segment;
 public class App extends AllDirectives {
     private static final int TIMEOUT = 3000;
     private static final String HOSTNAME = "localhost";
-    private static final int PORT = 3000;
+    private static final int PORT = 8080;
 
 
     private final ActorRef routerActor;
