@@ -1,7 +1,7 @@
 package bigdata.labs.lab4;
 
 import akka.actor.ActorRef;
-import akka.compat.Future;
+import scala.concurrent.Future;
 import akka.http.javadsl.marshallers.jackson.Jackson;
 import akka.http.javadsl.server.AllDirectives;
 import akka.http.javadsl.server.Route;
@@ -14,23 +14,14 @@ public class App extends AllDirectives {
 
     private Route createRoute(ActorRef routerActor) {
         return concat(
-                path("result", () ->
-                        route(
-                                get(
-                                        () -> parameter("getPackage", (id) -> {
-                                            Future
-                                        })
-                                )
-                        ))
-        )
-//        return concat(
-//                get(() ->
-//                        pathPrefix("getPackage", () ->
-//                                path(segment(), (String id) -> {
-//                                            Future<Object> result = Patterns.ask(routerActor, id, TIMEOUT);
-//                                            return completeOKWithFuture(result, Jackson.marshaller());
-//                                        }
-//                                ))),
-//                post(() ->));
+                get(
+                        () -> pathPrefix("getPackage",
+                                () -> path(segment(),
+                                        (String id) -> {
+                                            Future<Object> result = Patterns.ask(routerActor, id, TIMEOUT);
+                                            return completeOKWithFuture(result, Jackson.marshaller());
+                                        }
+                                ))),
+                post(() ->));
     }
 }
