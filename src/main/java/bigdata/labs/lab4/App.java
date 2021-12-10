@@ -24,6 +24,7 @@ import static akka.http.javadsl.server.PathMatchers.segment;
 
 public class App extends AllDirectives {
     private static final int TIMEOUT = 3000;
+    private static final String ACTOR_SYSTEM_NAME = "App";
     private static final String HOSTNAME = "localhost";
     private static final int PORT = 8080;
 
@@ -54,7 +55,7 @@ public class App extends AllDirectives {
     }
 
     public static void main(String[] args) throws IOException {
-        ActorSystem system = ActorSystem.create("App");
+        ActorSystem system = ActorSystem.create(ACTOR_SYSTEM_NAME);
         ActorRef routerActor = system.actorOf(Props.create(RouterActor.class, system), "routerActor");
 
         Http http = Http.get(system);
