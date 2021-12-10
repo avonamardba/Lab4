@@ -1,5 +1,5 @@
 package bigdata.labs.lab4;
 
-public class App {
-    
+public class App extends {
+
 }
