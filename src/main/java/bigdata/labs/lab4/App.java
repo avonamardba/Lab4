@@ -17,6 +17,7 @@ import akka.http.javadsl.server.AllDirectives;
 import akka.http.javadsl.server.Route;
 import akka.pattern.Patterns;
 
+import java.io.IOException;
 import java.util.concurrent.CompletionStage;
 
 import static akka.http.javadsl.server.PathMatchers.segment;
@@ -52,7 +53,7 @@ public class App extends AllDirectives {
                                         }))));
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         ActorSystem system = ActorSystem.create("App");
         ActorRef routerActor = system.actorOf(Props.create(RouterActor.class, system), "routerActor");
 
@@ -66,6 +67,9 @@ public class App extends AllDirectives {
                 ConnectHttp.toHost(HOSTNAME, PORT),
                 materializer);
 
-        String statrMessage = String.format("Server start at ")
+        String startMessage = String.format("Server start at http://%s:%d/\\", HOSTNAME, PORT);
+        System.out.println(startMessage);
+        binding.thenCompose(ServerBinding::unbind)
+                .thenAccept(unbound -> system.terminate());
     }
 }
