@@ -2,6 +2,7 @@ package bigdata.labs.lab4;
 
 import akka.actor.AbstractActor;
 import akka.actor.ActorRef;
+import org.omg.PortableInterceptor.INACTIVE;
 
 import javax.script.Invocable;
 import javax.script.ScriptEngine;
@@ -15,22 +16,12 @@ public class TestActor extends AbstractActor {
         this.storageActor = storageActor;
     }
 
-    private String executeTest(TestMessage testMessage) {
+    private String executeTest(TestMessage testMessage) throws ScriptException, NoSuchMethodException {
         ScriptEngine engine = new
                 ScriptEngineManager().getEngineByName("nashorn");
-        try {
-            engine.eval(testMessage.getParentPackage().getJsScript());
-        } catch (ScriptException e) {
-            e.printStackTrace();
-        }
+        engine.eval(testMessage.getParentPackage().getJsScript());
         Invocable invocable = (Invocable) engine;
-        try {
-            return invocable.invokeFunction(testMessage.getParentPackage().getFunctionName(),
-                    testMessage.getParams()).toString();
-        } catch (ScriptException | NoSuchMethodException e) {
-            e.printStackTrace();
-        }
-        return "";
+        return invocable.invokeFunction(testMessage.getParentPackage().getFunctionName(), testMessage.getParams().toString());
     }
 
     @Override
