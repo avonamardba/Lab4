@@ -1,7 +1,9 @@
 package bigdata.labs.lab4;
 
 import akka.actor.AbstractActor;
+import akka.actor.AbstractActor.Receive;
 import akka.actor.ActorRef;
+import akka.japi.pf.ReceiveBuilder;
 
 import javax.script.Invocable;
 import javax.script.ScriptEngine;
@@ -35,6 +37,6 @@ public class TestActor extends AbstractActor {
 
     @Override
     public Receive createReceive() {
-        return RecieveBuilder.create();
+        return ReceiveBuilder.create().;
     }
 }
