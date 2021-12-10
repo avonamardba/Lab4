@@ -14,9 +14,9 @@ public class App extends AllDirectives {
 
     private Route createRoute(ActorRef routerActor) {
         return concat(
-                get(
-                        () -> pathPrefix("getPackage",
-                                () -> path(segment(), (String id) -> {
+                get(() ->
+                        pathPrefix("getPackage", () ->
+                                path(segment(), (String id) -> {
                                             Future<Object> result = Patterns.ask(routerActor, id, TIMEOUT);
                                             return completeOKWithFuture(result, Jackson.marshaller());
                                         }
