@@ -1,2 +1,10 @@
-package bigdata.labs.lab4;public class StorageActor {
+package bigdata.labs.lab4;
+
+import akka.actor.AbstractActor;
+
+public class StorageActor extends AbstractActor {
+    @Override
+    public Receive createReceive() {
+        return null;
+    }
 }
