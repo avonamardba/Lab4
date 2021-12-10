@@ -1,4 +1,2 @@
-package bigdata.labs.lab4;
-
-public class test {
+package bigdata.labs.lab4;public class test {
 }
