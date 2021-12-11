@@ -26,7 +26,7 @@ public class StorageActor extends AbstractActor {
                         actualResult.equals(expectedResult));
                 answers.add(testResult);
             }
-            return new RequestAnswers(packageId, answers);
+            return new RequestAnswers(packageId);
         } else throw new Exception("No such package");
     }
 
