@@ -26,7 +26,7 @@ public class StorageActor extends AbstractActor {
                         actualResult.equals(expectedResult));
                 answers.add(testResult);
             }
-            return new RequestAnswers(packageId);
+            return new RequestAnswers(packageId, answers);
         } else throw new Exception("No such package");
     }
 
@@ -45,7 +45,7 @@ public class StorageActor extends AbstractActor {
     public Receive createReceive() {
         return ReceiveBuilder.create()
                 .match(TestMessage.class,
-                        test -> this.putTest(test))
+                        this::putTest)
                 .match(String.class,
                         id -> sender().tell(makeResults(id), self()))
                 .build();

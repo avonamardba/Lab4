@@ -16,4 +16,16 @@ public class TestResult {
         this.actualResult = actualResult;
         this.success = success;
     }
+
+    public String getExpectedResult() {
+        return expectedResult;
+    }
+
+    public String getActualResult() {
+        return actualResult;
+    }
+
+    public Boolean getSuccess() {
+        return success;
+    }
 }

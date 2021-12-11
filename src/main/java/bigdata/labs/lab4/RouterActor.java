@@ -39,7 +39,7 @@ public class RouterActor extends AbstractActor {
     public Receive createReceive() {
         return ReceiveBuilder.create()
                 .match(TestPackage.class,
-                        message -> executeTests(message))
+                        this::executeTests)
                 .match(String.class,
                         message -> storageActor.forward(message, getContext()))
                 .build();
