@@ -10,8 +10,7 @@ public class RequestAnswers {
     private ArrayList<TestResult> results;
 
     @JsonCreator
-    public RequestAnswers(@JsonProperty("packageId") String packageId,
-                          @JsonProperty("results") ArrayList<TestResult> results) {
+    public RequestAnswers(@JsonProperty("packageId") String packageId) {
         this.packageId = packageId;
         this.results = results;
     }

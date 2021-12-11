@@ -35,23 +35,20 @@ public class App extends AllDirectives {
         this.routerActor = routerActor;
     }
 
-    private Route createRoute() {
-        return concat(
-                get(
-                        () -> pathPrefix("getPackage",
-                                () -> path(segment(),
-                                        (String id) -> {
-                                            Future<Object> result = Patterns.ask(routerActor, id, TIMEOUT);
-                                            return completeOKWithFuture(result, Jackson.marshaller());
-                                        }
-                                ))),
-                post(
-                        () -> path("postPackage",
-                                () -> entity(Jackson.unmarshaller(TestPackage.class),
-                                        testPackage -> {
-                                            routerActor.tell(testPackage, ActorRef.noSender());
-                                            return complete("Start tests");
-                                        }))));
+    public Route createRoute() {
+        return path("testapp", () -> route(
+                get(() -> parameter("packageId", packageId -> {
+                    RequestAnswers msg = new RequestAnswers(packageId);
+                    Future<Object> result = Patterns.ask(router, msg, 5000);
+                    return completeOKWithFuture(result, Jackson.marshaller());
+                })),
+                post(() ->
+                        entity(Jackson.unmarshaller(ExecuteTestsCommand.class), msg -> {
+                            Patterns.ask(router, msg, 5000);
+                            return complete("ok");
+                        })
+                )
+        ));
     }
 
     public static void main(String[] args) throws IOException {
