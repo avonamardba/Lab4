@@ -4,6 +4,8 @@ import akka.actor.*;
 import akka.japi.pf.ReceiveBuilder;
 
 public class RouterActor extends AbstractActor {
+    private static final int RETRIES_COUNT = 5;
+    private static final int WORKERS_COUNT = 5;
     private ActorRef storageActor;
     private ActorRef testActor;
     private SupervisorStrategy strategy;
@@ -11,7 +13,7 @@ public class RouterActor extends AbstractActor {
     RouterActor(ActorSystem system) {
         this.storageActor = system.actorOf(Props.create(StorageActor.class));
         this.strategy = new OneForOneStrategy(
-                
+
         )
     }
 
