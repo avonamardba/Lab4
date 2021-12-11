@@ -1,14 +1,19 @@
 package bigdata.labs.lab4;
 
-import akka.actor.AbstractActor;
-import akka.actor.ActorRef;
-import akka.actor.SupervisorStrategy;
+import akka.actor.*;
 import akka.japi.pf.ReceiveBuilder;
 
 public class RouterActor extends AbstractActor {
     private ActorRef storageActor;
     private ActorRef testActor;
     private SupervisorStrategy strategy;
+
+    RouterActor(ActorSystem system) {
+        this.storageActor = system.actorOf(Props.create(StorageActor.class));
+        this.strategy = new OneForOneStrategy(
+                
+        )
+    }
 
     private void executeTests(TestPackage testPackage) {
         for (TestMessage testMessage : testPackage.getTests()) {
