@@ -73,6 +73,6 @@ public class App extends AllDirectives {
         System.out.println(startMessage);
         System.in.read();
         binding.thenCompose(serverBinding -> serverBinding.unbind())
-                .thenAccept(unbound -> system.terminate());
+                .thenAccept(unbound -> system.terminate()); 
     }
 }
